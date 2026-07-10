@@ -160,7 +160,7 @@ function eventoClasse(evento: string) {
                         <td class="border border-gray-300 dark:border-gray-600 p-2 text-gray-900 dark:text-white">{{ audit.auditable_id }}</td>
                         <td class="border border-gray-300 dark:border-gray-600 p-2 text-gray-900 dark:text-white">{{ new Date(audit.created_at).toLocaleString('pt-BR') }}</td>
                         <td class="border border-gray-300 dark:border-gray-600 p-2">
-                            <Link :href="route('auditoria.show', audit.id)"
+                            <Link :href="route('auditoria.show', { audit: audit.id })"
                                 class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-sm">
                                 Detalhes
                             </Link>

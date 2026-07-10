@@ -38,7 +38,7 @@ function mascaraTelefone(e: Event) {
 }
 
 function atualizar() {
-    form.put(route('pessoas.update', props.pessoa.id))
+    form.put(route('pessoas.update', { pessoa: props.pessoa.id }))
 }
 </script>
 

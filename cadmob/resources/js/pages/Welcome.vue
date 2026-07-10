@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, usePage } from '@inertiajs/vue3';
+
+const page = usePage()
+const auth = page.props.auth as any
 </script>
 
 <template>
@@ -21,9 +24,9 @@ import { Head, Link } from '@inertiajs/vue3';
 
         <!-- Card de acesso -->
         <div class="bg-white rounded-xl shadow-md p-8 w-full max-w-sm border border-gray-100">
-            <div v-if="$page.props.auth.user">
+            <div v-if="auth.user">
                 <p class="text-center text-gray-600 mb-4">
-                    Bem-vindo, <strong>{{ ($page.props.auth.user as any).name }}</strong>!
+                    Bem-vindo, <strong>{{ auth.user.name }}</strong>!
                 </p>
                 <Link
                     :href="route('dashboard')"

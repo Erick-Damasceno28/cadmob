@@ -78,7 +78,7 @@ function perfilLabel(perfil: string) {
                             </span>
                         </td>
                         <td class="border border-gray-300 dark:border-gray-600 p-2">
-                            <Link :href="route('usuarios.edit', usuario.id)"
+                            <Link :href="route('usuarios.edit', { usuario: usuario.id })"
                                 class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500 text-sm">
                                 Visualizar
                             </Link>
