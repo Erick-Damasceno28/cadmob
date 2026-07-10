@@ -9,6 +9,7 @@ use App\Http\Controllers\DocumentoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AverbacaoController;
 use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\AuditoriaController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -45,6 +46,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Relatórios — todos os perfis
     Route::get('/relatorios/sintetico', [RelatorioController::class, 'sintetico'])->name('relatorios.sintetico');
     Route::get('/relatorios/imovel/{imovel}', [RelatorioController::class, 'analitico'])->name('relatorios.analitico');
+
+    // Auditoria — apenas T
+    Route::middleware(['perfil:T'])->group(function () {
+        Route::get('/auditoria', [AuditoriaController::class, 'index'])->name('auditoria.index');
+        Route::get('/auditoria/{audit}', [AuditoriaController::class, 'show'])->name('auditoria.show');
+    });
 
     // Usuários — apenas T e S
     Route::middleware(['perfil:T,S'])->group(function () {

@@ -4,7 +4,7 @@ import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { Building2, Home, Settings, Users, UsersRound } from 'lucide-vue-next';
+import { Building2, ClipboardList, Home, Settings, Users, UsersRound } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 import { computed } from 'vue';
 
@@ -36,6 +36,12 @@ const todosItens = [
         url: '/usuarios',
         icon: Users,
         perfis: ['T', 'S'],
+    },
+    {
+        title: 'Auditoria',
+        url: '/auditoria',
+        icon: ClipboardList,
+        perfis: ['T'],
     },
     {
         title: 'Configurações',

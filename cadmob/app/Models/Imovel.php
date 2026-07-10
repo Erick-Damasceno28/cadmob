@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Imovel extends Model
+class Imovel extends Model implements Auditable
 {
     use HasFactory;
+    use \OwenIt\Auditing\Auditable;
 
     protected $table = 'imoveis';
 
@@ -36,8 +38,7 @@ class Imovel extends Model
     }
 
     public function averbacoes()
-{
-    return $this->hasMany(Averbacao::class);
-}
-
+    {
+        return $this->hasMany(Averbacao::class);
+    }
 }
