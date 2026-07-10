@@ -7,15 +7,15 @@ import { Link } from '@inertiajs/vue3';
 
 const sidebarNavItems: NavItem[] = [
     {
-        title: 'Profile',
+        title: 'Perfil',
         href: '/settings/profile',
     },
     {
-        title: 'Password',
+        title: 'Senha',
         href: '/settings/password',
     },
     {
-        title: 'Appearance',
+        title: 'Aparência',
         href: '/settings/appearance',
     },
 ];
@@ -25,22 +25,24 @@ const currentPath = window.location.pathname;
 
 <template>
     <div class="px-4 py-6">
-        <Heading title="Settings" description="Manage your profile and account settings" />
+        <Heading title="Configurações" description="Gerencie seu perfil e configurações da conta" />
 
         <div class="flex flex-col space-y-8 md:space-y-0 lg:flex-row lg:space-x-12 lg:space-y-0">
             <aside class="w-full max-w-xl lg:w-48">
                 <nav class="flex flex-col space-x-0 space-y-1">
-                    <Button
+                    <Link
                         v-for="item in sidebarNavItems"
                         :key="item.href"
-                        variant="ghost"
-                        :class="['w-full justify-start', { 'bg-muted': currentPath === item.href }]"
-                        as-child
+                        :href="item.href"
+                        :class="[
+                            'w-full px-3 py-2 rounded text-sm font-medium text-left transition-colors',
+                            currentPath === item.href
+                                ? 'bg-blue-100 text-blue-700 font-semibold'
+                                : 'text-gray-700 hover:bg-gray-100'
+                        ]"
                     >
-                        <Link :href="item.href">
-                            {{ item.title }}
-                        </Link>
-                    </Button>
+                        {{ item.title }}
+                    </Link>
                 </nav>
             </aside>
 

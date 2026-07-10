@@ -17,6 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
+
+        $middleware->alias([
+            'perfil' => \App\Http\Middleware\VerificaPerfil::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

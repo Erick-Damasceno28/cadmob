@@ -1,33 +1,55 @@
 <script setup lang="ts">
-import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { Link, usePage } from '@inertiajs/vue3';
+import { Building2, Home, Settings, Users, UsersRound } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
+import { computed } from 'vue';
 
-const mainNavItems: NavItem[] = [
+const page = usePage()
+const user = computed(() => (page.props.auth as any)?.user)
+const perfil = computed(() => user.value?.perfil ?? 'A')
+
+const todosItens = [
     {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
+        title: 'Home',
+        url: '/dashboard',
+        icon: Home,
+        perfis: null,
+    },
+    {
+        title: 'Pessoas',
+        url: '/pessoas',
+        icon: UsersRound,
+        perfis: null,
+    },
+    {
+        title: 'Imóveis',
+        url: '/imoveis',
+        icon: Building2,
+        perfis: null,
+    },
+    {
+        title: 'Usuários',
+        url: '/usuarios',
+        icon: Users,
+        perfis: ['T', 'S'],
+    },
+    {
+        title: 'Configurações',
+        url: '/settings/profile',
+        icon: Settings,
+        perfis: null,
     },
 ];
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
+const mainNavItems = computed(() =>
+    todosItens.filter(item =>
+        item.perfis === null || item.perfis.includes(perfil.value)
+    )
+)
 </script>
 
 <template>
@@ -49,7 +71,6 @@ const footerNavItems: NavItem[] = [
         </SidebarContent>
 
         <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>

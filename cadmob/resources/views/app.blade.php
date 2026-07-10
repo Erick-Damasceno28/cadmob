@@ -15,5 +15,6 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+        @flasher_render
     </body>
 </html>
